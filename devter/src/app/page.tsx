@@ -9,7 +9,7 @@ export default async function Home() {
   const { data: { session }} = await supabase.auth.getSession()
 
   if (session == null) {
-      redirect('login')
+      redirect('/login')
   }
 
   const { data: posts } = await supabase.from('posts').select()
