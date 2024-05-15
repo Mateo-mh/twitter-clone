@@ -2,6 +2,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { AuthButtonServer } from "./components/auth-button-server";
 import { redirect } from "next/navigation";
+import PostCard from "./components/post-card";
 
 export default async function Home() {
 
@@ -12,16 +13,37 @@ export default async function Home() {
       redirect('/login')
   }
 
-  const { data: posts } = await supabase.from('posts').select('*, users(name, avatar_url, user_name)')
+  const { data: posts } = await supabase.from('posts').select('*, user:users(name, avatar_url, user_name)')
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <AuthButtonServer />
+      
+      {
+        posts?.map(post => {
+          const {
+            id,
+            user,
+            content
+          } = post
+           
+          const {
+            user_name: userName,
+            name: userFullName,
+            avatar_url: userAvatarUrl,
+          } = user
 
-      <pre>
-        {
-          JSON.stringify(posts, null, 2)
-        }
-      </pre>
+          return (
+          <PostCard 
+            avatarUrl= {userAvatarUrl}
+            content={content}
+            key={id} 
+            userName={userName}
+            userFullName= {userFullName}
+             />
+            )
+        })
+      }
+
     </main>
   );
 }

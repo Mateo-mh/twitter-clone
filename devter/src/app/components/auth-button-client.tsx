@@ -2,7 +2,8 @@
 
 import { type Session, createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import {  useRouter } from "next/navigation";
-import {Button} from '@nextui-org/button'; 
+import React from "react";
+import {Button} from "@nextui-org/react";
 
 export function AuthButton({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient();
@@ -38,7 +39,7 @@ export function AuthButton({ session }: { session: Session | null }) {
           </svg>
           Iniciar sesión con Github
         </button>
-        ) : <Button onClick={handleSignOut}>Cerrar sesión</Button>
+        ) : <button onClick={handleSignOut} type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Cerrar sesión</button>
       }
     </header>
   );
