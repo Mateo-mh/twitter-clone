@@ -17,7 +17,7 @@ export default function PostCard({
   const [isFollowed, setIsFollowed] = useState(false);
 
   return (
-    <div className="w-[340px] bg-transparent shadow-none rounded-none overflow-hidden hover:bg-[#edeaea]
+    <div className="max-w-[600px] w-full bg-transparent shadow-none rounded-none overflow-hidden hover:bg-[#edeaea]
      transition border-b border-gray-300 cursor-pointer">
       <div className="px-4 py-3 bg-gray-250 flex justify-between items-center">
         <div className="flex items-center space-x-3">
