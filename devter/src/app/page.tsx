@@ -1,15 +1,14 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
-import { AuthButtonServer } from "./components/auth-button-server";
-import { redirect } from "next/navigation";
-import { PostLists } from "./components/posts-list";
-import { type Database } from "@/app/types/database"; 
-import { ComposePost } from "./components/compose-post";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import { AuthButtonServer } from '@/app/components/auth-button-server'
+import { redirect } from 'next/navigation'
+import { PostLists } from './components/posts-list'
+import { type Database } from './types/database'
+import { ComposePost } from './components/compose-post'
 
-export default async function Home() {
-
+export default async function Home () {
   const supabase = createServerComponentClient<Database>({ cookies })
-  const { data: { session }} = await supabase.auth.getSession()
+  const { data: { session } } = await supabase.auth.getSession()
 
   if (session === null) {
     redirect('/login')
@@ -22,11 +21,12 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
+
       <section className="max-w-[600px] w-full mx-auto border-l border-r border-gray-300 min-h-screen">
-        <ComposePost userAvatarUrl={session.user?.user_metadata?.avatar_url}/>
-        <PostLists posts={posts}/>
+        <ComposePost userAvatarUrl={session.user?.user_metadata?.avatar_url} />
+        <PostLists posts={posts} />
       </section>
-        <AuthButtonServer />
+      <AuthButtonServer />
     </main>
-  );
+  )
 }

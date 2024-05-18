@@ -1,5 +1,5 @@
-import PostCard from "./post-card"
-import { type Post } from "@/app/types/posts"
+import PostCard from './post-card'
+import { Post } from '@/app/types/posts' // Asegúrate de importar el tipo Post desde el archivo correcto
 
 export function PostLists ({ posts }: { posts: Post[] | null }) {
   return (
@@ -9,7 +9,8 @@ export function PostLists ({ posts }: { posts: Post[] | null }) {
           const {
             id,
             user,
-            content
+            content,
+            created_at
           } = post
 
           const {
