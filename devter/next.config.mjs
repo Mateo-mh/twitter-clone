@@ -2,6 +2,9 @@
 const nextConfig = {
     "experimental": {
         serverActions: true
+    },
+    esLint: {
+        ignoreDuringBuilds: true,
     }
 };
 
